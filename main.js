@@ -51,6 +51,7 @@ let isOpen = false;
 wrapper.addEventListener('click', () => {
   if (!isOpen) {
     envelope.classList.add('open');
+    wrapper.classList.add('open');
     createParticles();
     isOpen = true;
   }
