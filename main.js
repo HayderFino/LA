@@ -1,4 +1,4 @@
-import './style.css'
+// Removed import
 
 document.querySelector('#app').innerHTML = `
   <div class="stars" id="stars-container"></div>
