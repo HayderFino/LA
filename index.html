@@ -1,17 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Para Laura Herrera ✨</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Para Laura ✨</title>
+    
+    <!-- Meta tags for sharing -->
+    <meta name="theme-color" content="#FF8FB8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta property="og:title" content="Hola Laura, te preparé esto">
+    <meta property="og:description" content="Una pequeña sorpresa por el mes del amor y la amistad.">
+    <meta property="og:image" content="/img/og-image.jpg">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="img/icon-192.png">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
-  </head>
-  <body>
-    <div id="app"></div>
-    <script src="./main.js"></script>
-  </body>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <main id="app-container">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="section-hero">
+            <div class="hero-content reveal active fade-up">
+                <h1 id="title-name" class="hero-title">Laura</h1>
+                <p id="hero-subtitle" class="hero-subtitle">Una pequeña sorpresa para ti</p>
+                <div class="scroll-indicator">
+                    <span>Desliza hacia abajo</span>
+                    <div class="arrow-down">↓</div>
+                </div>
+            </div>
+            <!-- Decorative blobs -->
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+        </section>
+
+        <!-- Dynamic Phrases Section -->
+        <section id="phrases" class="section-phrases">
+            <div id="phrases-container" class="phrases-container">
+                <!-- Injected by JS -->
+            </div>
+        </section>
+
+
+
+        <!-- Final Letter Section -->
+        <section id="letter" class="section-letter">
+            <div class="letter-card reveal fade-up">
+                <div id="letter-content" class="letter-content">
+                    <!-- Injected by JS -->
+                </div>
+                <div class="letter-footer">
+                    <p id="letter-signature" class="signature"></p>
+                    <a id="btn-whatsapp" href="#" target="_blank" class="btn-primary">Contestar por WhatsApp</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Floating Music Player -->
+        <button id="btn-music" class="btn-music" aria-label="Reproducir música">
+            🎵
+        </button>
+        <!-- Reemplaza el src con la URL de tu canción en formato mp3 -->
+        <audio id="bg-music" loop>
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/16/audio_b282055eb1.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+        </audio>
+
+    </main>
+
+    <script src="js/content.js"></script>
+    <script src="js/app.js"></script>
+</body>
 </html>
