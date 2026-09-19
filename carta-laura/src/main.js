@@ -1,60 +1,73 @@
 import './style.css'
-import heroImg from './assets/hero.png'
-import javascriptLogo from './assets/javascript.svg'
-import viteLogo from './assets/vite.svg'
-import { setupCounter } from './counter.js'
 
 document.querySelector('#app').innerHTML = `
-<section id="center">
-  <div class="hero">
-    <img src="${heroImg}" class="base" width="170" height="179">
-    <img src="${javascriptLogo}" class="framework" alt="JavaScript logo"/>
-    <img src="${viteLogo}" class="vite" alt="Vite logo" />
+  <div class="stars" id="stars-container"></div>
+  <div class="envelope-container" id="envelope-wrapper">
+    <div class="envelope" id="envelope">
+      <div class="envelope-text">Toca para abrir 💌</div>
+      <div class="letter">
+        <div class="badge">Administradora de Empresas 💼✨</div>
+        <h1 class="letter-title">Para Laura Herrera</h1>
+        <p class="letter-content">
+          Laura, el mundo de los negocios es gigante, pero tu talento, tu visión y tu capacidad de liderazgo lo son aún más. <br><br>
+          Sigue brillando con esa energía única que te caracteriza. Eres una administradora increíble y una persona aún mejor. ¡Nunca dejes de soñar en grande!
+        </p>
+        <p class="letter-footer">Con mucho cariño.</p>
+      </div>
+    </div>
   </div>
-  <div>
-    <h1>Get started</h1>
-    <p>Edit <code>src/main.js</code> and save to test <code>HMR</code></p>
-  </div>
-  <button id="counter" type="button" class="counter"></button>
-</section>
-
-<div class="ticks"></div>
-
-<section id="next-steps">
-  <div id="docs">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#documentation-icon"></use></svg>
-    <h2>Documentation</h2>
-    <p>Your questions, answered</p>
-    <ul>
-      <li>
-        <a href="https://vite.dev/" target="_blank">
-          <img class="logo" src="${viteLogo}" alt="" />
-          Explore Vite
-        </a>
-      </li>
-      <li>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-          <img class="button-icon" src="${javascriptLogo}" alt="">
-          Learn more
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="social">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#social-icon"></use></svg>
-    <h2>Connect with us</h2>
-    <p>Join the Vite community</p>
-    <ul>
-      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a></li>
-      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#discord-icon"></use></svg>Discord</a></li>
-      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#x-icon"></use></svg>X.com</a></li>
-      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
-    </ul>
-  </div>
-</section>
-
-<div class="ticks"></div>
-<section id="spacer"></section>
+  <div id="hearts-container"></div>
 `
 
-setupCounter(document.querySelector('#counter'))
+// Generate background stars
+const starsContainer = document.getElementById('stars-container');
+for (let i = 0; i < 100; i++) {
+  const star = document.createElement('div');
+  star.classList.add('star');
+  
+  const size = Math.random() * 3 + 1;
+  star.style.width = \`\${size}px\`;
+  star.style.height = \`\${size}px\`;
+  
+  star.style.left = \`\${Math.random() * 100}%\`;
+  star.style.top = \`\${Math.random() * 100}%\`;
+  
+  star.style.animationDuration = \`\${Math.random() * 3 + 2}s\`;
+  star.style.animationDelay = \`\${Math.random() * 5}s\`;
+  
+  starsContainer.appendChild(star);
+}
+
+// Handle envelope opening
+const envelope = document.getElementById('envelope');
+const wrapper = document.getElementById('envelope-wrapper');
+const heartsContainer = document.getElementById('hearts-container');
+
+let isOpen = false;
+
+wrapper.addEventListener('click', () => {
+  if (!isOpen) {
+    envelope.classList.add('open');
+    createHearts();
+    isOpen = true;
+  }
+});
+
+function createHearts() {
+  for (let i = 0; i < 20; i++) {
+    setTimeout(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      
+      heart.style.left = \`\${Math.random() * 100}%\`;
+      heart.style.animationDuration = \`\${Math.random() * 2 + 3}s\`;
+      
+      heartsContainer.appendChild(heart);
+      
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }, i * 150);
+  }
+}
