@@ -1,0 +1,229 @@
+:root {
+  --primary: #9b72cf;
+  --secondary: #d8b4e2;
+  --dark: #2a1b3d;
+  --light: #f9f5ff;
+  --accent: #ffb7b2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--dark);
+  color: var(--light);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #3b2859 0%, #1a1025 100%);
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.envelope-container {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.envelope-container:hover {
+  transform: scale(1.02);
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background: var(--primary);
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.envelope::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  border-top: 130px solid var(--secondary);
+  transform-origin: top;
+  transition: transform 1s ease-in-out;
+  z-index: 3;
+}
+
+.envelope.open::before {
+  transform: rotateX(180deg);
+}
+
+.envelope-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--light);
+  z-index: 4;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.envelope.open .envelope-text {
+  opacity: 0;
+}
+
+.letter {
+  position: absolute;
+  bottom: 0;
+  width: 90%;
+  height: 90%;
+  background: var(--light);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: all 1s ease-in-out;
+  z-index: 2;
+  color: var(--dark);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+
+.envelope.open .letter {
+  transform: translateY(-80%);
+  opacity: 1;
+  z-index: 5;
+  height: auto;
+  min-height: 400px;
+}
+
+.letter-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease 0.8s;
+}
+
+.envelope.open .letter-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.letter-content {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease 1s;
+}
+
+.envelope.open .letter-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.letter-footer {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #666;
+  opacity: 0;
+  transition: all 0.5s ease 1.2s;
+}
+
+.envelope.open .letter-footer {
+  opacity: 1;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle linear infinite;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0); }
+}
+
+.floating-hearts {
+  position: absolute;
+  bottom: -50px;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.heart {
+  position: absolute;
+  color: var(--accent);
+  font-size: 24px;
+  animation: floatUp ease-in infinite;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.badge {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--dark);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease 0.6s;
+}
+
+.envelope.open .badge {
+  opacity: 1;
+  transform: translateY(0);
+}
